@@ -1,58 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.c                                            :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaplyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/19 17:19:03 by akaplyar          #+#    #+#             */
-/*   Updated: 2017/06/19 17:19:04 by akaplyar         ###   ########.fr       */
+/*   Created: 2017/06/19 17:18:57 by akaplyar          #+#    #+#             */
+/*   Updated: 2017/06/19 17:18:58 by akaplyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/stack_queue.h"
+#include "./includes/libft.h"
 
-static t_list		**get_queue(void)
+void				*stack_pop(t_list **stack)
 {
-	static t_list	*queue = NULL;
-
-	return (&queue);
-}
-
-void				*dequeue(void)
-{
-	t_list			**queue;
 	t_list			*tmp;
 	void			*item;
 
-	queue = get_queue();
-	if (!*queue)
+	if (!*stack)
 		return (NULL);
-	tmp = *queue;
+	tmp = *stack;
+	*stack = tmp->next;
 	item = tmp->content;
-	*queue = tmp->next;
 	free(tmp);
 	return (item);
 }
 
-void				enqueue(void *item, size_t size)
+int					stack_push(t_list **stack, void *item, size_t size)
 {
-	t_list			**queue;
-	t_list			*temp;
+	t_list			*new;
 
-	queue = get_queue();
-	temp = *queue;
-	ft_lst_push_back(&temp, ft_lstnew(item, size));
-	*queue = temp;
+	if (!(new = (t_list*)malloc(sizeof(t_list))))
+		return (0);
+	new->content = item;
+	new->content_size = size;
+	new->next = NULL;
+	ft_lstadd(stack, new);
+	return (1);
 }
 
-void				*queue_peek(void)
+void				*stack_peek(t_list **stack)
 {
-	t_list			**queue;
-
-	queue = get_queue();
-	if (!*queue)
+	if (!*stack)
 		return (NULL);
 	else
-		return ((*queue)->content);
+		return ((*stack)->content);
 }

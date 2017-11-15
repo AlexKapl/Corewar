@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-HEADERS =	ft_printf.h stack_queue.h libft.h hsv.h
+HEADERS =	ft_printf.h libft.h hsv.h
 HEADER =	$(addprefix ./includes/,$(HEADERS))
 PRINTF_PATH = ./ft_printf/
 
@@ -19,14 +19,15 @@ CFLAGS = -Wall -Wextra -Werror
 
 .PHONY: clean fclean re
 
-OBJECT =	ft_tabcount.o ft_tabdel.o hsv.o hsv_colors.o\
-			stack_queue/stack.o stack_queue/queue.o
+OBJECT =	ft_tabcount.o ft_tabdel.o hsv.o hsv_colors.o stack.o queue.o
 
-INT_O =		ft_abs.o ft_int_sort.o ft_intlen.o ft_atoi.o ft_atoi_base.o
+INT_O =		ft_abs.o ft_int_sort.o ft_intlen.o ft_atoi.o ft_atoi_base.o\
+			ft_bit_swap.o
 INT_OBJ =	$(addprefix ./int/,$(INT_O))
 
 LIST_O =	ft_lstnew.o ft_lstadd.o ft_lstmap.o ft_lstiter.o ft_lstdelone.o\
-			ft_lstdel.o ft_lstcount.o ft_lst_sort.o ft_lstnew_struct.o
+			ft_lstdel.o ft_lstcount.o ft_lst_sort.o ft_lstnew_struct.o\
+			ft_lst_push_back.o
 LIST_OBJ =	$(addprefix ./list/,$(LIST_O))
 
 CHAR_O =	ft_toupper.o ft_tolower.o ft_isprint.o ft_isalnum.o\
@@ -44,7 +45,7 @@ STR_O = 	ft_strdel.o ft_strclr.o ft_striter.o ft_strcat.o ft_strchr.o\
 			ft_strmake.o ft_strjoin.o ft_strtrim.o ft_strsplit.o ft_strnew.o\
 			ft_strcpy.o ft_strsub.o ft_strconcat.o ft_strcount.o ft_strncat.o\
 			ft_strcapitalizer.o ft_strisdigit.o ft_strrev.o ft_realloc.o\
-			ft_llitoa.o
+			ft_llitoa.o ft_space_skip.o
 STR_OBJ =	$(addprefix ./string/,$(STR_O))
 
 READ_O =	get_next_line.o	ft_readfile.o

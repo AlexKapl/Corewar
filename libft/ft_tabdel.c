@@ -24,4 +24,5 @@ void	ft_tabdel(char **tab, int count)
 		while (i < count)
 			free(tab[i++]);
 	free(tab);
+	tab = NULL;
 }

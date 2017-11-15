@@ -35,15 +35,22 @@ void				*stack_pop(void)
 	return (item);
 }
 
-void				stack_push(void *item, size_t size)
+int					stack_push(void *item, size_t size)
 {
 	t_list			**stack;
 	t_list			*temp;
+	t_list			*new;
 
+	if (!(new = (t_list*)malloc(sizeof(t_list))))
+		return (0);
+	new->content = item;
+	new->content_size = size;
+	new->next = NULL;
 	stack = get_stack();
 	temp = *stack;
-	ft_lstadd(&temp, ft_lstnew(item, size));
+	ft_lstadd(&temp, new);
 	*stack = temp;
+	return (1);
 }
 
 void				*stack_peek(void)

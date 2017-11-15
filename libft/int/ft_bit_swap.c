@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_bit_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaplyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/28 17:58:32 by akaplyar          #+#    #+#             */
-/*   Updated: 2016/12/06 21:29:51 by akaplyar         ###   ########.fr       */
+/*   Created: 2017/09/28 15:10:32 by akaplyar          #+#    #+#             */
+/*   Updated: 2017/09/28 15:10:35 by akaplyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char		*ft_strchr_space(const char *s)
+unsigned long long	ft_bit_swap_ll(unsigned long long llu)
 {
-	char	*str;
-
-	str = (char*)s;
-	while (*str)
-	{
-		if (ft_isspace(*str))
-			return (str);
-		str++;
-	}
-	return (NULL);
+	return (llu >> 56 | (llu >> 40 & 0xff00) |
+			(llu >> 24 & 0xff0000) | (llu >> 8 & 0xff000000) |
+			(llu << 8 & 0xff00000000) | (llu << 24 & 0xff0000000000) |
+			(llu << 40 & 0xff000000000000) | llu << 56);
 }
 
-char		*ft_strchr(const char *s, int c)
+unsigned			ft_bit_swap(unsigned u)
 {
-	char	*str;
-
-	str = (char*)s;
-	while (*str)
-	{
-		if (*str == (char)c)
-			return (str);
-		str++;
-	}
-	return (!c ? str : NULL);
+	return (u >> 24 | (u >> 8 & 0xff00) | (u << 8 & 0xff0000) | u << 24);
 }

@@ -29,7 +29,7 @@ char		*ft_readfile(const int fd)
 			return (NULL);
 		}
 		buff[ret] = '\0';
-		str = ft_strmake(&str, &buff, FIRST);
+		str = ft_strmake(str, buff, FIRST);
 	}
 	ft_strdel(&buff);
 	return (str);

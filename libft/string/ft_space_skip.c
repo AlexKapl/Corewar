@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_queue.h                                      :+:      :+:    :+:   */
+/*   ft_space_skip.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaplyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/19 17:18:52 by akaplyar          #+#    #+#             */
-/*   Updated: 2017/06/19 17:18:54 by akaplyar         ###   ########.fr       */
+/*   Created: 2017/09/21 11:11:06 by akaplyar          #+#    #+#             */
+/*   Updated: 2017/10/17 18:48:25 by akaplyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_QUEUE_H
-# define STACK_QUEUE_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-# include <stdlib.h>
+int				ft_space_skip_i(char *str)
+{
+	int			i;
 
-void		stack_push(void *item, size_t size);
-void		*stack_pop();
-void		*stack_peek();
-void		enqueue(void *item, size_t size);
-void		*dequeue();
-void		*queue_peek();
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n' || !ft_isspace(str[i]))
+			return (i);
+		i++;
+	}
+	return (i);
+}
 
-#endif
+char			*ft_space_skip(char *str)
+{
+	while (*str)
+	{
+		if (*str == '\n' || !ft_isspace(*str))
+			return (str);
+		str++;
+	}
+	return (str);
+}

@@ -103,5 +103,5 @@ void		ft_lst_sort_size(t_list **begin, int (*f)(size_t e1, size_t e2),
 			cur = next;
 		}
 	}
-	ft_lst_sort_size(begin, f, 0, max - 1);
+	ft_lst_sort_size(begin, f, NONE, max - 1);
 }
